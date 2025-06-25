@@ -1,10 +1,10 @@
 # partial_residual_plots_lavaan
 This project contains one function that creates partial residual plots for single paths of SEMs created with lavaan. It may or may not work for you.
 
-The function creates partial residual plots for single paths of SEMs created with lavaan
-It can handle multigroup and multilevel models and deal with funky survey designs fit with lavaan.survey
-because I am fancy, it can also convert data back to its original scale (if you did your sem right, you scaled your data beforehand ;-))
-and it can backtransform log and sqrt transformed y and x variables (it does so correctly if you log transformed them before the scaling, not after)
+The function creates partial residual plots for single paths of SEMs created with lavaan.
+It can handle multigroup and multilevel models and deal with funky survey designs fit with lavaan.survey.
+Because I am fancy, it can also convert data back to its original scale (if you did your sem right, you scaled your data beforehand ;-)).
+And it can backtransform log and sqrt transformed y and x variables (it does so correctly if you log transformed them before the scaling, not after)
 
 requried input:
  - fit   fitted lavaan object (this needs to be fitted with lavaan, not lavaan.survey!)
