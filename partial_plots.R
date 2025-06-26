@@ -25,7 +25,7 @@
 
 
 
-serainas_magical_residual_plot <- function(fit, y, x, 
+the_big_beautiful_residual_plot_function <- function(fit, y, x, 
                                            data = NULL,
                                            de_scale = FALSE, 
                                            unscaled_data = NULL, 
