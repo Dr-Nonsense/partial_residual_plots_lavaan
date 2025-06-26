@@ -19,6 +19,7 @@
 # - level             if you fit a multilevel SEM, specify at which level your path of interest takes place. It does work accross levels, but creates funky wave fitted lines. Not sure thats what you want, but hey, you do you
 # - backtransform_x   if you log or sqrt transformed your variable (before the scaling!), you can backtransform it. At this point you can give "log", "log+1)", "sqrt", "sqrt+1" backtransformations for log(x), log(x+1), sqrt(x) and sqrt(x+1) transformed variables respectively
 # - backtransform_y   same as backtransform_x, but for y
+# - remove_intercept  by default, the intercept is removed (remove_intercept = TRUE). For comparing groups of multigroup models, it might be interesting to not remove the intercept.
 
 # created in R R-4.3.2 in RStudio 2023.12.0 Build 369
 # packages required: ggplot2 (Version 3.5.1), cowplot (Version 1.1.2) and RColorBrewer (Version 1.1-3)
@@ -33,7 +34,8 @@ the_big_beautiful_residual_plot_function <- function(fit, y, x,
                                            survey_fit = NULL, 
                                            level = NULL,
                                            backtransform_x = NULL,
-                                           backtransform_y = NULL) {
+                                           backtransform_y = NULL,
+                                           remove_intercept = TRUE) {
   
   library(ggplot2)
   library(RColorBrewer)
@@ -121,7 +123,10 @@ the_big_beautiful_residual_plot_function <- function(fit, y, x,
     # Compute partial residuals
     df_group$y_resid <- df_group[[y]]
     intercept <- cofis_group[cofis_group$lhs == y & cofis_group$op == "~1", "est"]
-    df_group$y_resid <- df_group$y_resid - intercept
+
+    if (remove_intercept){
+      df_group$y_resid <- df_group$y_resid - intercept
+      }
     for (i in vars) {
       effect <- cofis_group[cofis_group$lhs == y & cofis_group$rhs == i, "est"]
       df_group$y_resid <- df_group$y_resid - effect * df_group[[i]]
