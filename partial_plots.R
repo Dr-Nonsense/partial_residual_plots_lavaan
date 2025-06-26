@@ -146,10 +146,10 @@ the_big_beautiful_residual_plot_function <- function(fit, y, x,
   # Unscale if requested
   if (de_scale) {
     if (is.null(unscaled_data)) stop("Please provide unscaled_data when de_scale = TRUE")
-    mean_x <- mean(unscaled_data[[x]])
-    sd_x <- sd(unscaled_data[[x]])
-    mean_y <- mean(unscaled_data[[y]])
-    sd_y <- sd(unscaled_data[[y]])
+    mean_x <- mean(unscaled_data[[x]], na.rm=T)
+    sd_x <- sd(unscaled_data[[x]], na.rm=T)
+    mean_y <- mean(unscaled_data[[y]], na.rm=T)
+    sd_y <- sd(unscaled_data[[y]], na.rm=T)
     
     df[[x]] <- sd_x * df[[x]] + mean_x
     df[["x"]] <- sd_x * df[["x"]] + mean_x
